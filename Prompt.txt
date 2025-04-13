@@ -1,0 +1,56 @@
+AI Tool Prompts for Assignment
+Fork the Repository and Modify ANTLR Grammar
+
+Prompt: "Fork the repo - h ps://github.com/data-integrations/wrangler to your own github handle. All changes should be commited back to this repository with a section in Readme.md about the usage of these 2 new parsers."
+
+Response: Instructions on forking the repository and modifying the ANTLR grammar.
+
+API Updates (wrangler-api module)
+
+Prompt: "(a) Grammar Modification (wrangler-core/src/main/antlr4/.../Directives.g4): Add the lexer rules for BYTE_SIZE and TIME_DURATION (including helper fragments BYTE_UNIT, TIME_UNIT). Modify relevant parser rules to accept BYTE_SIZE and TIME_DURATION tokens where appropriate for directive arguments."
+
+Response: Instructions on updating the ANTLR grammar and implementing ByteSize and TimeDuration classes.
+
+Core Parser Updates (wrangler-core module)
+
+Prompt: "(b) API Updates (wrangler-api module): Create new Java classes ByteSize.java and TimeDuration.java extending Token [wrangler-api/src/main/java/io/cdap/wrangler/api/parser/Token.java]."
+
+Response: Implementation details for ByteSize and TimeDuration classes.
+
+Update Token Definitions
+
+Prompt: "Update relevant classes (e.g., directive argument parsing logic) to support these new token types as valid directive arguments."
+
+Response: Instructions on updating directive argument parsing logic.
+
+Implement RecipeParser Interface
+
+Prompt: "Implement RecipeParser Interface: Create a class that implements RecipeParser. This class must provide implementations for all methods defined in the RecipeParser interface, including the new methods for handling BYTE_SIZE and TIME_DURATION tokens."
+
+Response: Implementation details for a class implementing RecipeParser.
+
+Modify ANTLR Visitor Methods
+
+Prompt: "Modify ANTLR Visitor Methods: Update the generated parser visitor (e.g., DirectivesBaseVisitor.java) to handle the new token types."
+
+Response: Instructions on modifying ANTLR visitor methods.
+
+New Directive Implementation (wrangler-core module)
+
+Prompt: "Create a new directive class, which can do aggregation, implementing the Directive interface."
+
+Response: Implementation details for the AggregateStatsDirective class.
+
+Testing (wrangler-core module)
+
+Prompt: "Add unit tests for the ByteSize and TimeDuration classes, verifying correct parsing and canonical value retrieval for various inputs."
+
+Response: Instructions on creating unit tests for ByteSize, TimeDuration, and AggregateStatsDirective.
+
+Create Test File for AggregateStatsDirective
+
+Prompt: "Create a list of Row objects representing sample log or transaction data. You can use TestingRig to simplify this process."
+
+Response: Instructions on creating test data and using TestingRig.
+
+These prompts cover the key aspects of your assignment, including modifying the ANTLR grammar, implementing new classes, updating parsing logic, creating a new directive, and writing comprehensive tests.
