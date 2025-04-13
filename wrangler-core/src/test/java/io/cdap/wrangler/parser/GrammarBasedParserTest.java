@@ -75,4 +75,23 @@ public class GrammarBasedParserTest {
     Assert.assertEquals(0, directives.size());
   }
 
+   @Test
+    public void testParseByteSizeInRecipe() {
+        String recipe = "@directive byte_size_column 10KB";
+        TokenGroup tokens = parseRecipe(recipe);
+        assertTrue(tokens.getTokens().stream().anyMatch(t -> t instanceof ByteSize));
+    }
+
+    @Test
+    public void testParseTimeDurationInRecipe() {
+        String recipe = "@directive time_duration_column 5ms";
+        TokenGroup tokens = parseRecipe(recipe);
+        assertTrue(tokens.getTokens().stream().anyMatch(t -> t instanceof TimeDuration));
+    }
+
+    @Test(expected = RecipeException.class)
+    public void testInvalidSyntax() {
+        String recipe = "@directive invalid_column 10Invalid";
+        parseRecipe(recipe);
+    }
 }
