@@ -112,4 +112,10 @@ public final class DirectiveConfig {
     object.add("aliases", gson.toJsonTree(aliases));
     return object;
   }
+  public static final Map<String, List<TokenType>> ARG_TYPES = Map.of(
+        "@max_size", List.of(TokenType.BYTE_SIZE),
+        "@cache_ttl", List.of(TokenType.TIME_DURATION)
+    );
 }
+
+

@@ -72,5 +72,21 @@ public class UsageDefinitionTest {
 
     Assert.assertTrue(true);
   }
+  @Test
+public void testByteSizeProcessing() {
+    DefaultRecipeParser parser = new DefaultRecipeParser();
+    ByteSize token = new ByteSize("10KB");
+    parser.processByteSizeToken(token); // Output: "Processed ByteSize: 10240 bytes"
+    assertEquals(10240, token.getBytes());
+}
+
+@Test
+public void testTimeDurationProcessing() {
+    DefaultRecipeParser parser = new DefaultRecipeParser();
+    TimeDuration token = new TimeDuration("2h");
+    parser.processTimeDurationToken(token); // Output: "Processed TimeDuration: 7200000 ms"
+    assertEquals(7200000, token.getMilliseconds());
+}
+
 
 }

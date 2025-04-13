@@ -58,4 +58,26 @@ public final class TokenGroup {
   public SourceInfo getSourceInfo() {
     return info;
   }
+  public class ByteSize extends Token {
+    private final long bytes;
+
+    public ByteSize(String text) {
+        super(TokenType.BYTE_SIZE, text);
+        this.bytes = parseBytes(text);
+    }
+
+    private long parseBytes(String text) { /* ... */ }
+}
+
+public class TimeDuration extends Token {
+    private final long milliseconds;
+
+    public TimeDuration(String text) {
+        super(TokenType.TIME_DURATION, text);
+        this.milliseconds = parseMilliseconds(text);
+    }
+
+    private long parseMilliseconds(String text) { /* ... */ }
+}
+
 }

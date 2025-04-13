@@ -326,4 +326,34 @@ public final class RecipeVisitor extends DirectivesBaseVisitor<RecipeSymbol.Buil
     int column = ctx.getStart().getCharPositionInLine();
     return new SourceInfo(lineno, column, text);
   }
+
+  private final TokenGroup tokenGroup = new TokenGroup();
+
+    @Override
+    public TokenGroup visitValue(DirectivesParser.ValueContext ctx) {
+        if (ctx.BYTE_SIZE() != null) {
+            // Handle BYTE_SIZE token (e.g., "10MB")
+            String text = ctx.BYTE_SIZE().getText();
+            ByteSize byteSize = new ByteSize(text);
+            tokenGroup.add(byteSize);
+        } else if (ctx.TIME_DURATION() != null) {
+            // Handle TIME_DURATION token (e.g., "30s")
+            String text = ctx.TIME_DURATION().getText();
+            TimeDuration timeDuration = new TimeDuration(text);
+            tokenGroup.add(timeDuration);
+        } else {
+            // Existing logic for STRING/NUMBER
+            return super.visitValue(ctx);
+        }
+        return tokenGroup;
+}
+public TokenGroup parse(String input) {
+    CharStream stream = CharStreams.fromString(input);
+    DirectivesLexer lexer = new DirectivesLexer(stream);
+    CommonTokenStream tokens = new CommonTokenStream(lexer);
+    DirectivesParser parser = new DirectivesParser(tokens);
+    ParseTree tree = parser.directive(); // Adjust based on root rule
+    return new DirectivesVisitor().visit(tree);
+}
+
 }

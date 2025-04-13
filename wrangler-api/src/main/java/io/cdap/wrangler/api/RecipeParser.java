@@ -31,4 +31,8 @@ public interface RecipeParser {
    * @return List of {@link Executor}.
    */
   List<Directive> parse() throws RecipeException;
+
+   void processByteSizeToken(ByteSize token);
+
+   void processTimeDurationToken(TimeDuration token);
 }

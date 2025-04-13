@@ -127,3 +127,12 @@ public interface Directive extends Executor<List<Row>, List<Row>>, EntityMetrics
     return null;
   }
 }
+public class SetMaxSizeDirective implements Directive {
+    @Override
+    public void initialize(Arguments args) {
+        // Extract ByteSize argument
+        ByteSize byteSize = args.value("size", ByteSize.class);
+        long maxBytes = byteSize.getBytes();
+    }
+}
+
